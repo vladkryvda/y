@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YT Player</title>
+<title>YT Player (no ads)</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400&display=swap');
 
@@ -131,7 +131,7 @@
       <p>очікую посилання</p>
     </div>
     <iframe id="frame"
-      allow="autoplay; encrypted-media; fullscreen"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowfullscreen></iframe>
   </div>
 
@@ -167,7 +167,16 @@
     }
     ph.style.display = 'none';
     frame.className = 'on';
-    frame.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0';
+    
+    // Головна зміна: youtube-nocookie + параметри, що пригнічують рекламу
+    frame.src = 'https://www.youtube-nocookie.com/embed/' + id + 
+                '?autoplay=1' +
+                '&rel=0' +
+                '&modestbranding=1' +
+                '&iv_load_policy=3' +
+                '&fs=1' +
+                '&disablekb=0' +
+                '&cc_load_policy=0';
   }
 
   inp.addEventListener('input', function () {
