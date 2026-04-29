@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+</html><!DOCTYPE html>
 <html lang="uk" data-theme="dark">
 <head>
 <meta charset="UTF-8">
@@ -13,56 +13,45 @@
 :root { --ease: cubic-bezier(.4,0,.2,1); }
 
 [data-theme="dark"] {
-  --bg:         #000000;
-  --surface:    #0a0a0a;
-  --line:       rgba(255,255,255,0.08);
-  --text:       #f5f5f5;
-  --muted:      rgba(245,245,245,0.22);
-  --placeholder:rgba(245,245,245,0.28);
-  --faint:      rgba(245,245,245,0.18);
-  --ok:         #22c55e;
-  --err:        #ef4444;
-  --cursor-c:   #ffffff;
-  --corner:     rgba(255,255,255,0.2);
+  --bg:          #000000;
+  --line:        rgba(255,255,255,0.1);
+  --text:        #c8c8c8;
+  --muted:       rgba(200,200,200,0.3);
+  --placeholder: rgba(200,200,200,0.22);
+  --faint:       rgba(200,200,200,0.16);
+  --ok:          #22c55e;
+  --err:         #ef4444;
+  --corner:      rgba(255,255,255,0.1);
+  --cursor-bg:   rgba(180,180,180,0.85);
 }
 
 [data-theme="light"] {
-  --bg:         #f6f3ee;
-  --surface:    #efeae2;
-  --line:       rgba(0,0,0,0.08);
-  --text:       #1a1814;
-  --muted:      rgba(26,24,20,0.38);
-  --placeholder:rgba(26,24,20,0.32);
-  --faint:      rgba(26,24,20,0.22);
-  --ok:         #16a34a;
-  --err:        #dc2626;
-  --cursor-c:   #1a1814;
-  --corner:     rgba(26,24,20,0.25);
+  --bg:          #ede8df;
+  --line:        rgba(0,0,0,0.1);
+  --text:        #2c2620;
+  --muted:       rgba(44,38,32,0.38);
+  --placeholder: rgba(44,38,32,0.28);
+  --faint:       rgba(44,38,32,0.2);
+  --ok:          #16a34a;
+  --err:         #dc2626;
+  --corner:      rgba(0,0,0,0.12);
+  --cursor-bg:   #2c2620;
 }
 
-/* cursor */
+/* ── cursor ── */
 *, *::before, *::after { cursor: none !important; }
 
 #cur {
   width: 5px; height: 5px;
   border-radius: 50%;
-  background: var(--cursor-c);
+  background: var(--cursor-bg);
   position: fixed;
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  transition:
-    width .18s var(--ease),
-    height .18s var(--ease),
-    background .35s;
-  mix-blend-mode: difference;
+  transition: width .18s var(--ease), height .18s var(--ease), background .35s;
 }
-[data-theme="light"] #cur { mix-blend-mode: normal; }
-
-#cur.hover {
-  width: 14px;
-  height: 14px;
-}
+#cur.hover { width: 13px; height: 13px; }
 
 html {
   height: 100%;
@@ -77,9 +66,10 @@ body {
   display: flex;
   flex-direction: column;
   transition: color .35s var(--ease);
+  user-select: none;
 }
 
-/* ── top-right theme button ── */
+/* ── theme button ── */
 .top-bar {
   position: fixed;
   top: 18px; right: 24px;
@@ -88,8 +78,7 @@ body {
 
 .theme-btn {
   width: 32px; height: 32px;
-  border: none;
-  background: none;
+  border: none; background: none;
   color: var(--muted);
   display: flex; align-items: center; justify-content: center;
   transition: color .2s;
@@ -116,52 +105,52 @@ main {
 .wrap {
   width: 100%; max-width: 800px;
   display: flex; flex-direction: column;
-  gap: 24px;
+  gap: 20px;
   animation: up .5s var(--ease) both;
 }
 
 @keyframes up {
-  from { opacity:0; transform:translateY(14px); }
-  to   { opacity:1; transform:translateY(0); }
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* status */
-.status-label {
-  font-family: 'Geist Mono', monospace;
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  transition: color .2s;
+/* ── status dot ── */
+.status-row {
   height: 14px;
-}
-.status-label.ok  { color: var(--ok); }
-.status-label.err { color: var(--err); }
-
-/* input area */
-.inp-area {
-  position: relative;
+  display: flex; align-items: center;
 }
 
-/* L-corner: left + bottom lines */
+.dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background .2s;
+  flex-shrink: 0;
+}
+.dot.ok  { background: var(--ok); }
+.dot.err { background: var(--err); }
+
+/* ── input area ── */
+.inp-area { position: relative; }
+
 .inp-area::before {
   content: '';
   position: absolute;
   left: 0; bottom: 0;
-  width: 10px; height: 10px;
+  width: 12px; height: 12px;
   border-left: 1px solid var(--corner);
   border-bottom: 1px solid var(--corner);
+  border-bottom-left-radius: 4px;
   pointer-events: none;
   transition: border-color .35s;
 }
 
 input {
   width: 100%;
-  height: 62px;
+  height: 44px;
   background: transparent;
   border: none;
-  padding: 0 48px 0 14px;
+  padding: 0 48px 8px 16px;
   font-family: 'Geist Mono', monospace;
   font-size: 14px;
   font-weight: 300;
@@ -169,14 +158,13 @@ input {
   outline: none;
   letter-spacing: .02em;
   transition: color .35s;
+  user-select: text;
 }
-input::placeholder {
-  color: var(--placeholder);
-}
+input::placeholder { color: var(--placeholder); }
 
 #clr {
   position: absolute; right: 0; top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-60%);
   background: none; border: none;
   color: var(--muted);
   display: none; align-items: center; justify-content: center;
@@ -187,19 +175,49 @@ input::placeholder {
 #clr:hover { color: var(--text); }
 #clr svg { width: 9px; height: 9px; }
 
-/* player */
-.player {
+/* ── player ── */
+.player-outer {
+  position: relative;
   width: 100%;
   aspect-ratio: 16/9;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 6px;
+}
+
+/* top-right corner */
+.player-outer::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 16px; height: 16px;
+  border-top: 1px solid var(--corner);
+  border-right: 1px solid var(--corner);
+  border-top-right-radius: 4px;
+  pointer-events: none;
+  z-index: 2;
+  transition: border-color .35s;
+}
+
+/* bottom-left corner */
+.player-outer::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 16px; height: 16px;
+  border-bottom: 1px solid var(--corner);
+  border-left: 1px solid var(--corner);
+  border-bottom-left-radius: 4px;
+  pointer-events: none;
+  z-index: 2;
+  transition: border-color .35s;
+}
+
+.player {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border-radius: 4px;
   overflow: hidden;
   position: relative;
-  transition: border-color .3s, background .35s;
 }
-.player.active { border-color: rgba(255,255,255,0.12); }
-[data-theme="light"] .player.active { border-color: rgba(0,0,0,0.14); }
 
 .ph {
   position: absolute; inset: 0;
@@ -233,7 +251,7 @@ iframe {
 }
 iframe.on { display: block; }
 
-/* toast */
+/* ── toast ── */
 .toast {
   position: fixed; bottom: 28px; left: 50%;
   transform: translateX(-50%) translateY(10px);
@@ -253,7 +271,7 @@ iframe.on { display: block; }
 
 @media (max-width: 540px) {
   main { padding: 32px 18px; }
-  input { height: 54px; font-size: 13px; }
+  input { font-size: 13px; }
   .top-bar { top: 14px; right: 16px; }
 }
 </style>
@@ -284,7 +302,9 @@ iframe.on { display: block; }
 <main>
   <div class="wrap">
 
-    <span class="status-label" id="lbl">&nbsp;</span>
+    <div class="status-row">
+      <div class="dot" id="dot"></div>
+    </div>
 
     <div class="inp-area">
       <input id="inp" type="text"
@@ -298,17 +318,19 @@ iframe.on { display: block; }
       </button>
     </div>
 
-    <div class="player" id="player">
-      <div class="ph" id="ph">
-        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="1" y="3" width="18" height="14" rx="2"/>
-          <polygon points="8,7 14,10 8,13" fill="currentColor" stroke="none" opacity="0.5"/>
-        </svg>
-        <p>очікую посилання</p>
+    <div class="player-outer" id="playerOuter">
+      <div class="player" id="player">
+        <div class="ph" id="ph">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="3" width="18" height="14" rx="2"/>
+            <polygon points="8,7 14,10 8,13" fill="currentColor" stroke="none" opacity="0.5"/>
+          </svg>
+          <p>очікую посилання</p>
+        </div>
+        <iframe id="frame"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
       </div>
-      <iframe id="frame"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen></iframe>
     </div>
 
   </div>
@@ -319,14 +341,10 @@ iframe.on { display: block; }
 <script>
   /* cursor */
   var curEl = document.getElementById('cur');
-  var mx = 0, my = 0;
-
   document.addEventListener('mousemove', function(e) {
-    mx = e.clientX; my = e.clientY;
-    curEl.style.left = mx + 'px';
-    curEl.style.top  = my + 'px';
+    curEl.style.left = e.clientX + 'px';
+    curEl.style.top  = e.clientY + 'px';
   });
-
   document.querySelectorAll('button, input, a').forEach(function(el) {
     el.addEventListener('mouseenter', function() { curEl.classList.add('hover'); });
     el.addEventListener('mouseleave', function() { curEl.classList.remove('hover'); });
@@ -338,21 +356,36 @@ iframe.on { display: block; }
   try { theme = localStorage.getItem('yt-theme') || 'dark'; } catch(e) {}
   html.setAttribute('data-theme', theme);
 
-  document.getElementById('themeBtn').addEventListener('click', function() {
+  function toggleTheme() {
     theme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', theme);
     try { localStorage.setItem('yt-theme', theme); } catch(e) {}
+  }
+
+  document.getElementById('themeBtn').addEventListener('click', function(e) {
+    e.stopPropagation();
+    toggleTheme();
+  });
+
+  document.addEventListener('click', function(e) {
+    var t = e.target;
+    if (
+      t === document.getElementById('inp') ||
+      t === document.getElementById('clr') ||
+      t.closest('#playerOuter') ||
+      t.closest('.theme-btn')
+    ) return;
+    toggleTheme();
   });
 
   /* player */
-  var inp    = document.getElementById('inp');
-  var lbl    = document.getElementById('lbl');
-  var clr    = document.getElementById('clr');
-  var player = document.getElementById('player');
-  var ph     = document.getElementById('ph');
-  var frame  = document.getElementById('frame');
-  var toast  = document.getElementById('toast');
-  var cur    = null;
+  var inp   = document.getElementById('inp');
+  var dot   = document.getElementById('dot');
+  var clr   = document.getElementById('clr');
+  var ph    = document.getElementById('ph');
+  var frame = document.getElementById('frame');
+  var toast = document.getElementById('toast');
+  var cur   = null;
 
   function getId(s) {
     s = (s || '').trim();
@@ -370,42 +403,40 @@ iframe.on { display: block; }
       frame.src = 'about:blank';
       frame.className = '';
       ph.classList.remove('gone');
-      player.classList.remove('active');
       return;
     }
     ph.classList.add('gone');
     frame.className = 'on';
-    player.classList.add('active');
     frame.src = 'https://www.youtube-nocookie.com/embed/' + id +
       '?autoplay=1&rel=0&modestbranding=1&iv_load_policy=3&fs=1';
   }
 
-  function setStatus(text, cls) {
-    lbl.textContent = text || '\u00a0';
-    lbl.className = 'status-label' + (cls ? ' ' + cls : '');
+  function setDot(cls) {
+    dot.className = 'dot' + (cls ? ' ' + cls : '');
   }
 
   inp.addEventListener('input', function() {
     var v = inp.value;
     clr.className = v ? 'on' : '';
     if (!v.trim()) {
-      setStatus('', '');
+      setDot('');
       play(null);
       return;
     }
     var id = getId(v);
     if (id) {
-      setStatus('знайдено', 'ok');
+      setDot('ok');
       play(id);
     } else {
-      setStatus('некоректне посилання', 'err');
+      setDot('err');
       play(null);
     }
   });
 
-  clr.addEventListener('click', function() {
+  clr.addEventListener('click', function(e) {
+    e.stopPropagation();
     inp.value = '';
-    setStatus('', '');
+    setDot('');
     clr.className = '';
     play(null);
     inp.focus();
@@ -416,6 +447,8 @@ iframe.on { display: block; }
     toast.className = 'toast on';
     setTimeout(function() { toast.className = 'toast'; }, 2000);
   }
+
+  window.addEventListener('load', function() { inp.focus(); });
 </script>
 </body>
 </html>
