@@ -14,34 +14,34 @@
 
 [data-theme="dark"] {
   --bg:          #000000;
-  --line:        rgba(255,255,255,0.1);
-  --text:        rgba(180,180,180,0.85);
-  --inp-text:    rgba(180,180,180,0.85);
-  --muted:       rgba(180,180,180,0.28);
-  --placeholder: rgba(180,180,180,0.2);
-  --faint:       rgba(180,180,180,0.32);
-  --ok:          #22c55e;
-  --err:         #ef4444;
-  --corner:      rgba(255,255,255,0.1);
-  --cursor-bg:   rgba(180,180,180,0.85);
+  --line:        rgba(255,255,255,0.13);
+  --text:        rgba(210,210,210,0.9);
+  --inp-text:    rgba(210,210,210,0.9);
+  --muted:       rgba(210,210,210,0.35);
+  --placeholder: rgba(210,210,210,0.25);
+  --faint:       rgba(210,210,210,0.38);
+  --ok:          #6aab7e;
+  --err:         #b85c5c;
+  --corner:      rgba(255,255,255,0.13);
+  --cursor-bg:   rgba(210,210,210,0.9);
 }
 
 [data-theme="light"] {
   --bg:          #f0ead8;
-  --line:        rgba(0,0,0,0.12);
-  --text:        #3a3228;
-  --inp-text:    #3a3228;
-  --muted:       rgba(58,50,40,0.42);
-  --placeholder: rgba(58,50,40,0.3);
-  --faint:       rgba(58,50,40,0.3);
-  --ok:          #16a34a;
-  --err:         #dc2626;
-  --corner:      rgba(58,50,40,0.18);
-  --cursor-bg:   #3a3228;
+  --line:        rgba(0,0,0,0.15);
+  --text:        #2e2820;
+  --inp-text:    #2e2820;
+  --muted:       rgba(46,40,32,0.5);
+  --placeholder: rgba(46,40,32,0.32);
+  --faint:       rgba(46,40,32,0.35);
+  --ok:          #4a7c5a;
+  --err:         #8f3f3f;
+  --corner:      rgba(46,40,32,0.22);
+  --cursor-bg:   #2e2820;
 }
 
 /* ── cursor ── */
-*, *::before, *::after { cursor: none !important; }
+html, body, *, *::before, *::after { cursor: none !important; }
 
 #cur {
   width: 5px; height: 5px;
@@ -413,7 +413,7 @@ iframe.on { opacity: 1; }
     }
     ph.classList.add('gone');
     frame.className = 'on';
-    frame.src = 'https://www.youtube.com/embed/' + id +
+    frame.src = 'https://www.youtube-nocookie.com/embed/' + id +
       '?autoplay=1&rel=0&modestbranding=1&iv_load_policy=3&fs=1';
   }
 
